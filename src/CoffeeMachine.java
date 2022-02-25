@@ -11,6 +11,7 @@ public class CoffeeMachine {
                 "Pouring coffee into the cup\n" +
                 "Pouring some milk into the cup\n" +
                 "Coffee is ready!");
+        System.out.println("");
 
         System.out.println("Write how many cups of coffee you will need: ");
         int cups = scanner.nextInt();
