@@ -4,23 +4,26 @@ public class CoffeeMachine {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Starting to make a coffee\n" +
-                "Grinding coffee beans\n" +
-                "Boiling water\n" +
-                "Mixing boiled water with crushed coffee beans\n" +
-                "Pouring coffee into the cup\n" +
-                "Pouring some milk into the cup\n" +
-                "Coffee is ready!");
-        System.out.println("");
-
+        System.out.println("Write how many ml of water the coffee machine has: ");
+        int watter = scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has: ");
+        int milk = scanner.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has: ");
+        int beans = scanner.nextInt();
         System.out.println("Write how many cups of coffee you will need: ");
         int cups = scanner.nextInt();
-        scanner.nextLine();
 
+        int maxWatter = watter / 200;
+        int maxMilk = milk / 50;
+        int maxBeans = beans / 15;
+        int maxCups = maxWatter < maxMilk ? (maxWatter < maxBeans ? maxWatter : maxBeans) : (maxMilk < maxBeans ? maxMilk : maxBeans);
 
-        System.out.println("For " + cups + " cups of coffee you will need:");
-        System.out.println(cups * 200 + " ml of water");
-        System.out.println(cups * 50 + " ml of milk");
-        System.out.println(cups * 15 + " g od coffee beans");
+        if (maxCups == cups) {
+            System.out.println("Yes, I can make that amount of coffee");
+        } else if (maxCups > cups) {
+            System.out.println("Yes, I can make that amount of coffee (and even " + (maxCups - cups) + " more than that)");
+        } else {
+            System.out.println("No, I can make only " + maxCups + " cup(s) of coffee");
+        }
     }
 }
