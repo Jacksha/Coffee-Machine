@@ -2,16 +2,16 @@ package machine;
 import java.util.Scanner;
 
 public class CoffeeMachine {
+
+    static int watter = 400;
+    static int milk = 540;
+    static int beans = 120;
+    static int cups = 9;
+    static int money = 550;
+    static String menu = "";
+    static String choice = "";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        int watter = 400;
-        int milk = 540;
-        int beans = 120;
-        int cups = 9;
-        int money = 550;
-        String menu = "";
-        String choice = "";
 
         while (!choice.equals("exit")) {
             System.out.println("Write action (buy, fill, take, remaining, exit): ");
@@ -79,7 +79,7 @@ public class CoffeeMachine {
                     break;
 
                 case "remaining":
-                    remaining(watter, milk, beans, cups, money);
+                    remaining();
                     break;
                     
                 default:
@@ -89,7 +89,7 @@ public class CoffeeMachine {
         }
     }
 
-    public static void remaining (int watter, int milk, int beans, int cups, int money) {
+    public static void remaining () {
         System.out.println("The coffee machine has:");
         System.out.println(watter + " ml of water");
         System.out.println(milk + " ml of milk");
