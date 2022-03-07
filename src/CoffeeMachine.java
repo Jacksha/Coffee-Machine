@@ -16,7 +16,7 @@ public class CoffeeMachine {
     Coffee latte = new Coffee("Latte", 350, 75, 20, 1, 7);
     Coffee cappuccino = new Coffee("Cappuccino", 200, 100, 12, 1, 6);
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // "exit" for exit loop
@@ -89,7 +89,7 @@ public class CoffeeMachine {
     }
 
     // method for making coffee
-    public void makeCoffee(Coffee oneCoffee) {
+    public static void makeCoffee(Coffee oneCoffee) {
         if (watter < oneCoffee.watter) {
             System.out.println("Not enough watter to make " + oneCoffee.coffeeName + " you need to fill up.");
         } else if (milk < oneCoffee.milk) {
