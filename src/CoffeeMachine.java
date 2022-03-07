@@ -16,7 +16,7 @@ public class CoffeeMachine {
     Coffee latte = new Coffee("Latte", 350, 75, 20, 1, 7);
     Coffee cappuccino = new Coffee("Cappuccino", 200, 100, 12, 1, 6);
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // "exit" for exit loop
@@ -89,40 +89,22 @@ public class CoffeeMachine {
     }
 
     // method for making coffee
-    public static void makeCoffee(Coffee coffee) {
-        if (watter < coffee.watter) {
-            System.out.println("Not enough watter to make " + coffee.coffeeName + " you need to fill up.");
-        } else if (milk < coffee.milk) {
-            System.out.println("Not enough milk to make " + coffee.coffeeName + " you need to fill up.");
-        } else if (beans < coffee.beans) {
-            System.out.println("Not enough coffee beans to make " + coffee.coffeeName + " you need to fill up.");
-        } else if (cups < coffee.cups) {
-            System.out.println("Not enough cups to make " + coffee.coffeeName + " you need to fill up.");
+    public void makeCoffee(Coffee oneCoffee) {
+        if (watter < oneCoffee.watter) {
+            System.out.println("Not enough watter to make " + oneCoffee.coffeeName + " you need to fill up.");
+        } else if (milk < oneCoffee.milk) {
+            System.out.println("Not enough milk to make " + oneCoffee.coffeeName + " you need to fill up.");
+        } else if (beans < oneCoffee.beans) {
+            System.out.println("Not enough coffee beans to make " + oneCoffee.coffeeName + " you need to fill up.");
+        } else if (cups < oneCoffee.cups) {
+            System.out.println("Not enough cups to make " + oneCoffee.coffeeName + " you need to fill up.");
         } else {
-            watter -= coffee.watter;
-            milk -= coffee.milk;
-            beans -= coffee.beans;
-            cups -= coffee.cups;
-            money += coffee.money;
-            System.out.println(coffee.cups + " cup of " + coffee.coffeeName + " done! Have a nice day.");
+            watter -= oneCoffee.watter;
+            milk -= oneCoffee.milk;
+            beans -= oneCoffee.beans;
+            cups -= oneCoffee.cups;
+            money += oneCoffee.money;
+            System.out.println(oneCoffee.cups + " cup of " + oneCoffee.coffeeName + " done! Have a nice day.");
         }
-    }
-}
-
-class Coffee {
-    String coffeeName;
-    int watter;
-    int milk;
-    int beans;
-    int cups;
-    int money;
-
-    Coffee(String coffeeName, int watter, int milk, int beans, int cups, int money) {
-        this.coffeeName = coffeeName;
-        this.watter = watter;
-        this.milk = milk;
-        this.beans = beans;
-        this.cups = cups;
-        this.money = money;
     }
 }
