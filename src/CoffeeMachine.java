@@ -9,6 +9,12 @@ public class CoffeeMachine {
     static int money = 550;
     static String menu = "";
     static String choice = "";
+    Coffee coffee;
+
+    //making Coffee instances
+    Coffee espresso = new Coffee("Espresso", 250, 0, 16, 1, 4);
+    Coffee latte = new Coffee("Latte", 350, 75, 20, 1, 7);
+    Coffee cappuccino = new Coffee("Cappuccino", 200, 100, 12, 1, 6);
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,13 +31,13 @@ public class CoffeeMachine {
                     menu = scanner.next();
                     switch (menu) {
                         case "1":
-                            makeCoffee("Espresso", 250, 0, 16, 1, 4);
+                            makeCoffee(espresso);
                             break;
                         case "2":
-                            makeCoffee("Latte", 350, 75, 20, 1, 7);
+                            makeCoffee(latte);
                             break;
                         case "3":
-                            makeCoffee("Cappuccino", 200, 100, 12, 1, 6);
+                            makeCoffee(cappuccino);
                             break;
                         case "back":
                             break;
@@ -82,23 +88,41 @@ public class CoffeeMachine {
         System.out.println("$" + money + " of money");
     }
 
-    // Function for making coffee
-    public static void makeCoffee(String coffeeName, int watterDose, int milkDose, int beansDose, int cupsDose, int price) {
-        if (watter < watterDose) {
-            System.out.println("Not enough watter to make " + coffeeName + " you need to fill up.");
-        } else if (milk < milkDose) {
-            System.out.println("Not enough milk to make " + coffeeName + " you need to fill up.");
-        } else if (beans < beansDose) {
-            System.out.println("Not enough coffee beans to make " + coffeeName + " you need to fill up.");
-        } else if (cups < cupsDose) {
-            System.out.println("Not enough cups to make " + coffeeName + " you need to fill up.");
+    // method for making coffee
+    public static void makeCoffee(Coffee coffee) {
+        if (watter < coffee.watter) {
+            System.out.println("Not enough watter to make " + coffee.coffeeName + " you need to fill up.");
+        } else if (milk < coffee.milk) {
+            System.out.println("Not enough milk to make " + coffee.coffeeName + " you need to fill up.");
+        } else if (beans < coffee.beans) {
+            System.out.println("Not enough coffee beans to make " + coffee.coffeeName + " you need to fill up.");
+        } else if (cups < coffee.cups) {
+            System.out.println("Not enough cups to make " + coffee.coffeeName + " you need to fill up.");
         } else {
-            watter -= watterDose;
-            milk -= milkDose;
-            beans -= beansDose;
-            cups -= cupsDose;
-            money += price;
-            System.out.println(cupsDose + " cup of " + coffeeName + " done! Have a nice day.");
+            watter -= coffee.watter;
+            milk -= coffee.milk;
+            beans -= coffee.beans;
+            cups -= coffee.cups;
+            money += coffee.money;
+            System.out.println(coffee.cups + " cup of " + coffee.coffeeName + " done! Have a nice day.");
         }
+    }
+}
+
+class Coffee {
+    String coffeeName;
+    int watter;
+    int milk;
+    int beans;
+    int cups;
+    int money;
+
+    Coffee(String coffeeName, int watter, int milk, int beans, int cups, int money) {
+        this.coffeeName = coffeeName;
+        this.watter = watter;
+        this.milk = milk;
+        this.beans = beans;
+        this.cups = cups;
+        this.money = money;
     }
 }
