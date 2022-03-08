@@ -7,13 +7,20 @@ public class CoffeeMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        CoffeeMachine machine = new CoffeeMachine();
+        // Creating "CoffeeMachine" object machine
+        CoffeeMachine machine = new CoffeeMachine(400, 540, 120, 9, 550);
 
-        // "exit" for exit loop
+        // Creating "Coffee" objects...
+        Coffee espresso = new Coffee("Espresso", 250, 0, 16, 1, 4);
+        Coffee latte = new Coffee("Latte", 350, 75, 20, 1, 7);
+        Coffee cappuccino = new Coffee("Cappuccino", 200, 100, 12, 1, 6);
+
+        // Main menu loop -> "exit" for exit loop
         while (!choice.equals("exit")) {
             System.out.println("Write action (buy, fill, take, remaining, exit): ");
             choice = scanner.next();
 
+            // Main menu
             switch (choice) {
 
                 case "buy":
@@ -21,13 +28,13 @@ public class CoffeeMain {
                     menu = scanner.next();
                     switch (menu) {
                         case "1":
-                            makeCoffee(espresso);
+                            machine.makeCoffee(espresso);
                             break;
                         case "2":
-                            makeCoffee(latte);
+                            machine.makeCoffee(latte);
                             break;
                         case "3":
-                            makeCoffee(cappuccino);
+                            machine.makeCoffee(cappuccino);
                             break;
                         case "back":
                             break;
@@ -38,23 +45,15 @@ public class CoffeeMain {
                     break;
 
                 case "fill":
-                    System.out.println("Write how many ml of water you want to add: ");
-                    watter += scanner.nextInt();
-                    System.out.println("Write how many ml of milk you want to add: ");
-                    milk += scanner.nextInt();
-                    System.out.println("Write how many grams of coffee beans you want to add:");
-                    beans += scanner.nextInt();
-                    System.out.println("Write how many disposable cups of coffee you want to add: ");
-                    cups += scanner.nextInt();
+                    machine.fillTheMachine();
                     break;
 
                 case "take":
-                    System.out.println("I gave you $" +money);
-                    money -= money;
+                    machine.takeMoney();
                     break;
 
                 case "remaining":
-                    remaining();
+                    machine.remaining();
                     break;
 
                 case "exit":
@@ -65,36 +64,6 @@ public class CoffeeMain {
                     System.out.println("Unknown command");
                     break;
             }
-        }
-    }
-
-    // Function for status
-    public static void remaining() {
-        System.out.println("The coffee machine has:");
-        System.out.println(watter + " ml of water");
-        System.out.println(milk + " ml of milk");
-        System.out.println(beans + " g of coffee beans");
-        System.out.println(cups + " disposable cups");
-        System.out.println("$" + money + " of money");
-    }
-
-    // method for making coffee
-    public static void makeCoffee(Coffee oneCoffee) {
-        if (watter < oneCoffee.watter) {
-            System.out.println("Not enough watter to make " + oneCoffee.coffeeName + " you need to fill up.");
-        } else if (milk < oneCoffee.milk) {
-            System.out.println("Not enough milk to make " + oneCoffee.coffeeName + " you need to fill up.");
-        } else if (beans < oneCoffee.beans) {
-            System.out.println("Not enough coffee beans to make " + oneCoffee.coffeeName + " you need to fill up.");
-        } else if (cups < oneCoffee.cups) {
-            System.out.println("Not enough cups to make " + oneCoffee.coffeeName + " you need to fill up.");
-        } else {
-            watter -= oneCoffee.watter;
-            milk -= oneCoffee.milk;
-            beans -= oneCoffee.beans;
-            cups -= oneCoffee.cups;
-            money += oneCoffee.money;
-            System.out.println(oneCoffee.cups + " cup of " + oneCoffee.coffeeName + " done! Have a nice day.");
         }
     }
 }
