@@ -1,29 +1,19 @@
 import java.util.Scanner;
 
-public class CoffeeMachine {
-
-    int watter = 400;
-    static int milk = 540;
-    static int beans = 120;
-    static int cups = 9;
-    static int money = 550;
-    Coffee coffee;
-
-    CoffeeMachine
-
-            //making Coffee instances
-    Coffee espresso = new Coffee("Espresso", 250, 0, 16, 1, 4);
-    Coffee latte = new Coffee("Latte", 350, 75, 20, 1, 7);
-    Coffee cappuccino = new Coffee("Cappuccino", 200, 100, 12, 1, 6);
+public class CoffeeMain {
+    static String menu = "";
+    static String choice = "";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        CoffeeMachine machine = new CoffeeMachine();
 
         // "exit" for exit loop
         while (!choice.equals("exit")) {
             System.out.println("Write action (buy, fill, take, remaining, exit): ");
             choice = scanner.next();
-    
+
             switch (choice) {
 
                 case "buy":
@@ -46,7 +36,7 @@ public class CoffeeMachine {
                             break;
                     }
                     break;
-    
+
                 case "fill":
                     System.out.println("Write how many ml of water you want to add: ");
                     watter += scanner.nextInt();
@@ -57,7 +47,7 @@ public class CoffeeMachine {
                     System.out.println("Write how many disposable cups of coffee you want to add: ");
                     cups += scanner.nextInt();
                     break;
-    
+
                 case "take":
                     System.out.println("I gave you $" +money);
                     money -= money;
@@ -70,7 +60,7 @@ public class CoffeeMachine {
                 case "exit":
                     System.out.println("Exiting...");
                     break;
-                    
+
                 default:
                     System.out.println("Unknown command");
                     break;
