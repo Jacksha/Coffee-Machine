@@ -1,4 +1,7 @@
+import javax.imageio.IIOException;
+import java.io.*;
 import java.util.Scanner;
+import java.io.FileWriter;
 
 public class CoffeeMachine {
 
@@ -7,17 +10,15 @@ public class CoffeeMachine {
     static int beans;
     static int cups;
     static int money;
+    static String fileName;
     Coffee coffee;
 
     Scanner scanner = new Scanner(System.in);
+    Scanner statusScan;
 
     // Constructor
-    public CoffeeMachine(int watter, int milk, int beans, int cups, int money) {
-        this.watter = watter;
-        this.milk = milk;
-        this.beans = beans;
-        this.cups = cups;
-        this.money = money;
+    public CoffeeMachine(String fileName) {
+        this.fileName = fileName;
     }
 
 
@@ -71,6 +72,47 @@ public class CoffeeMachine {
     }
 
 
+    // Initialize the status for this machine
+    void initStatus() {
+        try {
+            statusScan = new Scanner(new FileReader("./doc/" + fileName));
+            statusScan.nextLine();
+            statusScan.useDelimiter("; |\n");
+            String strNum = statusScan.next();
+            this.watter = Integer.parseInt(strNum);
+            strNum = statusScan.next();
+            this.milk = Integer.parseInt(strNum);
+            strNum = statusScan.next();
+            this.beans = Integer.parseInt(strNum);
+            strNum = statusScan.next();
+            this.cups = Integer.parseInt(strNum);
+            strNum = statusScan.next();
+            this.money = Integer.parseInt(strNum);
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+    // save status
+    void saveStatus(UserAdmin user) {
+        try {
+            FileWriter writeStatus = new FileWriter("./doc/" + fileName);
+            writeStatus.write("watter; milk; beans; cups; money \n");
+            writeStatus.write(this.watter + "; ");
+            writeStatus.write(this.milk + "; ");
+            writeStatus.write(this.beans + "; ");
+            writeStatus.write(this.cups + "; ");
+            writeStatus.write(this.money + "\n");
+            writeStatus.write(user.getUsername() + "; ");
+            writeStatus.write(user.getPassword() + "");
+            writeStatus.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 
     // Method for status
     public void remaining() {
@@ -85,21 +127,21 @@ public class CoffeeMachine {
 
     // method for making coffee
     public void makeCoffee(Coffee oneCoffee) {
-        if (this.watter < oneCoffee.watter) {
+        if (this.watter < oneCoffee.recWatter) {
             System.out.println("Not enough watter to make " + oneCoffee.coffeeName + " you need to fill up.\n");
-        } else if (this.milk < oneCoffee.milk) {
+        } else if (this.milk < oneCoffee.recMilk) {
             System.out.println("Not enough milk to make " + oneCoffee.coffeeName + " you need to fill up.\n");
-        } else if (this.beans < oneCoffee.beans) {
+        } else if (this.beans < oneCoffee.recBeans) {
             System.out.println("Not enough coffee beans to make " + oneCoffee.coffeeName + " you need to fill up.\n");
-        } else if (this.cups < oneCoffee.cups) {
+        } else if (this.cups < 1) {
             System.out.println("Not enough cups to make " + oneCoffee.coffeeName + " you need to fill up.\n");
         } else {
-            this.watter -= oneCoffee.watter;
-            this.milk -= oneCoffee.milk;
-            this.beans -= oneCoffee.beans;
-            this.cups -= oneCoffee.cups;
-            this.money += oneCoffee.money;
-            System.out.println(oneCoffee.cups + " cup of " + oneCoffee.coffeeName + " done! Have a nice day.\n");
+            this.watter -= oneCoffee.recWatter;
+            this.milk -= oneCoffee.recMilk;
+            this.beans -= oneCoffee.recBeans;
+            this.cups -= 1;
+            this.money += oneCoffee.recMoney;
+            System.out.println("One cup of " + oneCoffee.coffeeName + " done! Have a nice day.\n");
         }
     }
 
@@ -121,4 +163,5 @@ public class CoffeeMachine {
         System.out.println("I gave you $" +this.money);
         this.money -= this.money;
     }
+
 }

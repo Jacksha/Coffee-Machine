@@ -1,17 +1,15 @@
 public class Coffee {
     String coffeeName;
-    int watter;
-    int milk;
-    int beans;
-    int cups;
-    int money;
+    int recWatter;
+    int recMilk;
+    int recBeans;
+    int recMoney;
 
-    Coffee(String coffeeName, int watter, int milk, int beans, int cups, int money) {
+    Coffee(String coffeeName, int watter, int milk, int beans, int money) {
         this.coffeeName = coffeeName;
-        this.watter = watter;
-        this.milk = milk;
-        this.beans = beans;
-        this.cups = cups;
-        this.money = money;
+        this.recWatter = watter;
+        this.recMilk = milk;
+        this.recBeans = beans;
+        this.recMoney = money;
     }
 }
