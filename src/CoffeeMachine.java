@@ -141,7 +141,7 @@ public class CoffeeMachine {
             this.beans -= oneCoffee.recBeans;
             this.cups -= 1;
             this.money += oneCoffee.recMoney;
-            System.out.println("One cup of " + oneCoffee.coffeeName + " done! Have a nice day.\n");
+            System.out.println("\nOne cup of " + oneCoffee.coffeeName + " done! Have a nice day.\n");
         }
     }
 
@@ -160,7 +160,7 @@ public class CoffeeMachine {
 
     // take money!
     public void takeMoney() {
-        System.out.println("I gave you $" +this.money);
+        System.out.println("\nI gave you $" +this.money + "\n");
         this.money -= this.money;
     }
 

@@ -30,7 +30,7 @@ public class CoffeeMain {
             switch (initChoice) {
 
                 case "buy":
-                    System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:, back - to main menu:");
+                    System.out.println("\nWhat do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:, back - to main menu:");
                     menu = scanner.next();
                     // buy menu
                     switch (menu) {
@@ -57,10 +57,12 @@ public class CoffeeMain {
                     System.out.println("Password: ");
                     String pass = scanner.next();
                     System.out.println("");
+
                     if (admin1.chckCred(user, pass)) {
                         System.out.println("Login successful!");
+
                         while (!choice.equals("exit")) {
-                            System.out.println("Write action (fill, take, remaining, exit): ");
+                            System.out.println("\nWrite action (fill, take, remaining, exit): ");
                             choice = scanner.next();
                             // Admin menu
                             switch (choice) {
@@ -74,10 +76,10 @@ public class CoffeeMain {
                                     machine.remaining();
                                     break;
                                 case "exit":
-                                    System.out.println("Loging out");
+                                    System.out.println("\nLoging out\n");
                                     break;
                                 default:
-                                    System.out.println("Unknown command");
+                                    System.out.println("\nUnknown command\n");
                                     break;
                             }
                         }
@@ -87,12 +89,12 @@ public class CoffeeMain {
                     break;
 
                 case "exit":
-                    System.out.println("Exiting Coffee Machine...");
+                    System.out.println("\nExiting Coffee Machine...");
                     machine.saveStatus(admin1);
                     break;
 
                 default:
-                    System.out.println("Unknown command");
+                    System.out.println("\nUnknown command\n");
                     break;
             }
         }
